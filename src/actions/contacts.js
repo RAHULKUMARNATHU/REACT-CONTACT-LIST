@@ -11,7 +11,7 @@ export function fetchContacts(){
         return response.json();
     })
     .then((data)=>{
-        // console.log(data);
+       
         dispatch(updateContacts(data));
     })
     }
