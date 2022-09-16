@@ -6,7 +6,7 @@ export default function contacts(state = [], action) {
       case UPDATE_CONTACTS:
         return action.users;
       case ADD_CONTACT:
-        return action.newContact;
+        return [action.newContact , ...state];
 
     default:
       return state;

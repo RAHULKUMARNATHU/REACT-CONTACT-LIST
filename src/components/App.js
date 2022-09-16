@@ -15,7 +15,6 @@ class App extends React.Component{
     render(){
     
        const{users}=this.props;
-        console.log(this.props ,">>>>>")
         return(
             <div>   
                <Home users = {users}/> 

@@ -1,6 +1,6 @@
 import { ADD_CONTACT, UPDATE_CONTACTS } from "./actionTypes";
 import { APIUrls } from "../helpers/urls"
-import { getFormBody } from '../helpers/utils';
+import { getFormBody  } from '../helpers/utils';
 
 
 export function fetchContacts(){
@@ -26,32 +26,34 @@ export function updateContacts(users) {
   }
 
 
-  export function createContact(newContact){
+  export function createContact(content){
     return (dispatch) => {
         const url = APIUrls.createContact();
-    
+      // console.log({content} ,"content")
         fetch(url, {
           method: 'POST',
-        //   headers: {
-        //     'Content-Type': 'application/x-www-form-urlencoded',
-        //     Authorization: `Bearer ${getAuthTokenFromLocalStorage()}`,
-        //   },
-          body:getFormBody({newContact}),
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+          body: JSON.stringify(content)
+          // body:getFormBody({content}),
         })
         .then((response) => response.json())
         .then((data) => {
           console.log('DATA' ,data);
     
-          if(data.success){
+          if(data){
             dispatch(addContact(data));
           }
         })
       };
   }
 
-  export function addContact(post) {
+  export function addContact(newContact) {
+    console.log(newContact)
     return {
+    
       type: ADD_CONTACT,
-      post,
+      newContact,
     };
   }

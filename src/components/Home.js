@@ -16,6 +16,7 @@ export default class Home extends Component {
         </div>
         <div className="list-container">
           <div className="main-container">
+            
             {users.map((element) => (
               <div className="container">
                 <span>{element.name}</span>

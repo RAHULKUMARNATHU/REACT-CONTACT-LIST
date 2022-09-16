@@ -1,24 +1,34 @@
 import React, { Component } from "react";
 import Button from "react-bootstrap/Button";
 import { connect } from "react-redux";
+import { createContact } from "../actions/contacts";
 
 class CreateContact extends Component {
-  //   constructor(props) {
-  //     super(props);
-  //     this.state = {
-  //       content: '',
-  //     };
-  //   }
-  //   handleOnClick =()=>{
-  //     //   dispatch an action
-  //     this.props.dispatch(createPost(this.state.content))
-  //   }
-  //   handleChange = (e) =>{
-  //       this.setState({
-  //           content : e.target.value,
+    constructor(props) {
+      super(props);
+      this.state = {
+        name : '',
+        phone :''
+      };
+    }
+    handleOnClick =()=>{
+      //   dispatch an action
+      this.props.dispatch(createContact({ name:this.state.name , phone:this.state.phone}))
+    }
+    handleNameChange = (e) =>{
+        this.setState({
+          name : e.target.value,
+          
+        })
+    }
 
-  //       })
-  //   }
+    handlePhoneChange = (e) =>{
+        this.setState({
+            phone: e.target.value
+
+        })
+    }
+
 
    
   render() {
@@ -33,11 +43,11 @@ class CreateContact extends Component {
             <div className="dropdown-list-contact">
               <div className="name-box">
                 <label>Name</label>
-                <input type="text" placeholder="Name" />
+                <input type="text" value={this.state.content} onChange={this.handleNameChange}/>
               </div>
               <div className="contact-box">
-                <label>Contact</label>
-                <input type="text" placeholder="Contact" onChange={1} />
+                <label >Contact</label>
+                <input type="text" value={this.state.phone} onChange={this.handlePhoneChange} />
               </div>
               <div className="add-btn">
                 <Button id="add-post-btn" variant="success" onClick={this.handleOnClick}>
