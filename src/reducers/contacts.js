@@ -1,4 +1,4 @@
-import { ADD_CONTACT, EDIT_CONTACT_FAILED, EDIT_CONTACT_SUCCESSFUL, UPDATE_CONTACTS } from "../actions/actionTypes";
+import { ADD_CONTACT, DELETE_CONTACT, EDIT_CONTACT_FAILED, EDIT_CONTACT_SUCCESSFUL, UPDATE_CONTACTS } from "../actions/actionTypes";
 
 
 export default function contacts(state = [], action) {
@@ -21,6 +21,12 @@ export default function contacts(state = [], action) {
           ...state,
           error : action.error
         }
+
+        case DELETE_CONTACT :
+          return{
+            ...state,
+            action
+          }
     default:
       return state;
     }

@@ -83,7 +83,7 @@ export function createContact(content){
     return (dispatch) => {
       const url = APIUrls.editUser();
       fetch(url ,{
-        method : 'PUT',
+        method : 'POST',
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
       }, 
@@ -98,7 +98,7 @@ export function createContact(content){
           console.log('Edit Contact data', data);
           if (data) {
             // dispatch action to save user
-            dispatch(editUserSuccessful(data.data.user));
+            dispatch(editUserSuccessful(data.user));
             // if(data.data.token){
             //   localStorage.setItem('token',data.data.token)
             // }
@@ -116,3 +116,12 @@ export function createContact(content){
 
   // DELETE OR REMOVE CONTACT
 
+export function removeConact(userId){
+  return(dispatch) => {
+    const url = APIUrls.removeConact(userId)
+    fetch(url , {
+      method: 'DELETE',
+    }).then((response) => response.json())
+    .then((json) => console.log(json))
+  }
+}
