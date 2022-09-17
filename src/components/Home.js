@@ -29,7 +29,7 @@ export default class Home extends Component {
                         <div className="dropdown-list">
                           <div className="Buttons">
                           <div className="edit-button">
-                            <Button variant="primary">Edit</Button>
+                            <Button variant="primary" >Edit</Button>
                           </div>
 
                           <div>
