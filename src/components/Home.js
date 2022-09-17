@@ -3,6 +3,17 @@ import "../index.css";
 import CreateContact from "./CreateContact";
 import Button from "react-bootstrap/Button";
 export default class Home extends Component {
+  constructor(){
+    super();
+    this.state ={
+      name :"",
+      contact :"",
+      id:null
+    }
+
+  }
+
+
   render() {
     const { users } = this.props;
 
@@ -29,7 +40,12 @@ export default class Home extends Component {
                         <div className="dropdown-list">
                           <div className="Buttons">
                           <div className="edit-button">
-                            <Button variant="primary" >Edit</Button>
+                            <Button variant="primary"  onClick={() =>
+            this.setState({
+              id: this.user.id,
+              value: { name: this.user.name , contact: this.user.contact },
+            })
+          } >Edit</Button>
                           </div>
 
                           <div>
