@@ -81,13 +81,13 @@ export function createContact(content){
 
   export function editUser(name , contact){
     return (dispatch) => {
-      const url = APIUrls.editContact();
+      const url = APIUrls.editUser();
       fetch(url ,{
-        method : 'POST',
+        method : 'PUT',
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
       }, 
-        body: JSON.stringifyy(
+        body: JSON.stringify(
           name,
           contact
          
@@ -99,9 +99,9 @@ export function createContact(content){
           if (data) {
             // dispatch action to save user
             dispatch(editUserSuccessful(data.data.user));
-            if(data.data.token){
-              localStorage.setItem('token',data.data.token)
-            }
+            // if(data.data.token){
+            //   localStorage.setItem('token',data.data.token)
+            // }
             return;
           }
          

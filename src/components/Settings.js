@@ -1,71 +1,56 @@
 import React, { useState } from 'react'
+import { Button } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import { editUser } from '../actions/contacts';
+import '../index.css'
 
- function Settings({
-    edit ,
 
- }) {
-    const [name, setName] = useState(edit ? edit.value.name : "");
-  const [contact, setContact] = useState(edit ? edit.value.contact : "");
- 
+ function Settings(props) {
+   
+    const [name , setName] = useState()
+    const [contact , setContact] = useState();
+   
+
+
+    const handleNameChange=(e)=>{
+        
+        setName({
+            name:e.target.value
+        })
+    }
+
+        const handleContactChange=(e)=>{
+            setContact({
+                contact : e.target.value
+            })
+            
+    }
+
+
+    const handleOnClick =()=>{
+        //   dispatch an action
+        props.dispatch(editUser({ name:name , contact:contact}))
+     
+    }
+    
+      
   return (
-    <div><ul className="list-group mb-4">
-    {edit ? (
-      <table>
-        <tbody>
-          <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Contact</th>
-           
-          </tr>
-          <tr>
-            <td></td>
-            <td>
-              <input
-                placeholder="Update user name"
-                value={name}
-                onChange={handleNameChange}
-                name="name"
-                className="user-input edit"
-              />
-            </td>
-            <td>
-              <input
-                placeholder="Update user email"
-                value={contact}
-                onChange={handleContactChange}
-                name="contact"
-                className="user-input edit"
-              />
-            </td>
-           
-            <td>
-              <button onClick={handleSubmit} className="user-button edit">
-                Update User
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    ) : (
-      <table>
-        <tbody>
-          <tr>
-            <th></th>
-            <th>Name</th>
-            <th>Contact</th>
-          </tr>
-          <User
-            users={users}
-            onSelectdelete={onSelectdelete}
-            updateUser={updateUser}
-          />
-         
-        </tbody>
-      </table>
-    )}
-  </ul></div>
+    <div className='main-container-setting'>
+        
+        <div className='name-container'>
+        <label>Name</label>   
+        <input  type="text" onChange={handleNameChange}/>
+        </div>
+        
+        <div className='contact-container' >
+        <label>Contact</label>
+        <input type="text" onChange={handleContactChange}/>
+        </div>
+       <div>
+       <Button onClick={handleOnClick}>Update</Button>
+       </div>
+        
+    </div>
   )
 }
-
-export default Settings
+export default connect()(Settings);

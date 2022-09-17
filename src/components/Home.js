@@ -2,23 +2,34 @@ import React, { Component } from "react";
 import "../index.css";
 import CreateContact from "./CreateContact";
 import Button from "react-bootstrap/Button";
+import Settings from "./Settings";
+
 export default class Home extends Component {
+
+
   constructor(){
     super();
-    this.state ={
-      name :"",
-      contact :"",
-      id:null
+      this.state ={
+       edit : false
     }
-
   }
 
+  handleSubmit(setEdit){
+    // this.setState({edit:false})
+    setEdit({
+      edit:false
+    })
 
-  render() {
+  }
+   render() {
     const { users } = this.props;
+    
 
+    
     return (
-      <div>
+
+      <>
+    {this.state.edit ? (<Settings edit={this.edit}/>) : (<div>
         <div className="text-area">
           <h2>Contact Lists</h2>
         </div>
@@ -40,12 +51,7 @@ export default class Home extends Component {
                         <div className="dropdown-list">
                           <div className="Buttons">
                           <div className="edit-button">
-                            <Button variant="primary"  onClick={() =>
-            this.setState({
-              id: this.user.id,
-              value: { name: this.user.name , contact: this.user.contact },
-            })
-          } >Edit</Button>
+                            <Button variant="primary" onClick={()=>this.setState({edit:true})}>Edit</Button>
                           </div>
 
                           <div>
@@ -61,7 +67,11 @@ export default class Home extends Component {
             ))}
           </div>
         </div>
-      </div>
+      </div>)
+            }
+      </>
+    
+      
     );
   }
 }

@@ -95,7 +95,7 @@ code {
   outline: none;
 }
 
-.dropdown-container:focus .dropdown {
+.dropdown-container:focus-within .dropdown {
   opacity: 1;
   z-index: 100;
   max-height: 100vh;
@@ -172,4 +172,32 @@ code {
 
  }
  
+ .main-container-setting{
+  height: 200px;
+  width: 300px;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  margin:50px 0px 10px 300px ;
+  background-color: #E7E9EB;
+  padding-left: 20px;
+ }
+
  
+ .contact-container{
+  padding: 10px 5px 10px 5px;
+ 
+
+ }
+ .name-container {
+  padding: 10px 5px 10px 5px;
+
+ }
+
+ .name-container > label{
+  display: block;
+ }
+
+ .contact-container > label{
+  display: block;
+ }
