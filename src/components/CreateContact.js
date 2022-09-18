@@ -33,7 +33,7 @@ class CreateContact extends Component {
    
   render() {
     return (
-      <div className="contact-dropdown-container" tabindex="-1 " >
+      <div className="contact-dropdown-container" tabIndex="-1 " >
         <div className="add-user">
           <img
             src="https://cdn-icons-png.flaticon.com/512/747/747968.png"

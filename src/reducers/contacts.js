@@ -10,11 +10,8 @@ export default function contacts(state = [], action) {
         return [action.newContact , ...state];
 
         case EDIT_CONTACT:
-          return{
-          ...state,
-          user : action.user,
-          error : false
-          }
+          return solve(state,action);
+            
 
         
         case DELETE_CONTACT :
@@ -22,4 +19,16 @@ export default function contacts(state = [], action) {
     default:
       return state;
     }
+}
+
+
+
+function solve(state, action) {
+  state.forEach((user) =>
+      {if(user.id === action.contact.id){
+        user.name = action.contact.name;
+        user.phone = action.contact.phone;
+      }}
+    );
+    return [...state];
 }
