@@ -1,4 +1,4 @@
-import { ADD_CONTACT, DELETE_CONTACT, EDIT_CONTACT_FAILED, EDIT_CONTACT_SUCCESSFUL, UPDATE_CONTACTS } from "./actionTypes";
+import { ADD_CONTACT, DELETE_CONTACT, EDIT_CONTACT, UPDATE_CONTACTS } from "./actionTypes";
 import { APIUrls } from "../helpers/urls"
 
 
@@ -63,56 +63,34 @@ export function createContact(content){
 
   // EDIT OR UPDATE CONTACT
 
-  export function editUserSuccessful(user) {
+  export function editContact(contact) {
+    console.log(contact);
     return {
-      type: EDIT_CONTACT_SUCCESSFUL,
-      user,
+      type: EDIT_CONTACT,
+      contact,
     };
   }
 
-  export function editUserFailed(error) {
-    return {
-      type: EDIT_CONTACT_FAILED,
-      error,
-    };
-  }
-
-
-
-  export function editUser(name , contact){
+  export function editedContact(contact){
     return (dispatch) => {
-      const url = APIUrls.editUser();
+      const url = APIUrls.editContact();
       fetch(url ,{
         method : 'POST',
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
       }, 
-        body: JSON.stringify(
-          name,
-          contact
-         
-       ),
+        body: JSON.stringify(contact),
       })
         .then((response) => response.json())
         .then((data) => {
           console.log('Edit Contact data', data);
           if (data) {
-            // dispatch action to save user
-            dispatch(editUserSuccessful(data.user));
-            // if(data.data.token){
-            //   localStorage.setItem('token',data.data.token)
-            // }
+            dispatch(editContact(contact));
             return;
           }
-         
-
-          dispatch(editUserFailed(data.message));
-
-
       })
     };
   }
-
 
   // DELETE OR REMOVE CONTACT
   export function deleteContact(contact) {
