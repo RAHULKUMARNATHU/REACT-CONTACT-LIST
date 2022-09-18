@@ -1,4 +1,4 @@
-import { ADD_CONTACT, EDIT_CONTACT_FAILED, EDIT_CONTACT_SUCCESSFUL, UPDATE_CONTACTS } from "./actionTypes";
+import { ADD_CONTACT, DELETE_CONTACT, EDIT_CONTACT_FAILED, EDIT_CONTACT_SUCCESSFUL, UPDATE_CONTACTS } from "./actionTypes";
 import { APIUrls } from "../helpers/urls"
 
 
@@ -115,13 +115,24 @@ export function createContact(content){
 
 
   // DELETE OR REMOVE CONTACT
-
-export function removeConact(userId){
+  export function deleteContact(contact) {
+    return {
+      type: DELETE_CONTACT,
+      contact,
+    };
+  }
+export function removeContact(contact){
   return(dispatch) => {
-    const url = APIUrls.removeConact(userId)
+    const url = APIUrls.deleteContact(contact)
     fetch(url , {
-      method: 'DELETE',
+      method: 'POST',
     }).then((response) => response.json())
-    .then((json) => console.log(json))
+    .then((data) => {
+      // console.log('Delete Contact data', data);
+      if (data) {
+        dispatch(deleteContact(contact));
+        return;
+      }
+  })
   }
 }

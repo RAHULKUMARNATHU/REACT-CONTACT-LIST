@@ -1,35 +1,23 @@
-import React, { Component } from "react";
 import "../index.css";
 import CreateContact from "./CreateContact";
 import Button from "react-bootstrap/Button";
-import Settings from "./Settings";
+import { connect } from "react-redux";
+import { removeContact } from "../actions/contacts";
 
-export default class Home extends Component {
+
+function Home (props){
 
 
-  constructor(){
-    super();
-      this.state ={
-       edit : false
-    }
+  const {users} = props;
+
+
+  const handleDelete = (contact) => {
+    props.dispatch(removeContact(contact));
   }
-
-  handleSubmit(setEdit){
-    // this.setState({edit:false})
-    setEdit({
-      edit:false
-    })
-
-  }
-   render() {
-    const { users } = this.props;
-    
-
-    
     return (
 
-      <>
-    {this.state.edit ? (<Settings edit={this.edit}/>) : (<div>
+        <>
+   
         <div className="text-area">
           <h2>Contact Lists</h2>
         </div>
@@ -55,7 +43,8 @@ export default class Home extends Component {
                           </div>
 
                           <div>
-                            <Button variant="danger">Delete</Button>
+                            <Button variant="danger"
+                            onClick={()=>handleDelete(element)}>Delete</Button>
                           </div>
                           </div>
                         </div>
@@ -67,11 +56,13 @@ export default class Home extends Component {
             ))}
           </div>
         </div>
-      </div>)
-            }
+     
+          
       </>
     
       
     );
-  }
+  
 }
+
+export default connect()(Home);

@@ -2,7 +2,8 @@ import { ADD_CONTACT, DELETE_CONTACT, EDIT_CONTACT_FAILED, EDIT_CONTACT_SUCCESSF
 
 
 export default function contacts(state = [], action) {
-    switch (action.type) {
+  console.log(action , "Action in Reducer")  
+  switch (action.type) {
       case UPDATE_CONTACTS:
         return action.users;
       case ADD_CONTACT:
@@ -22,11 +23,9 @@ export default function contacts(state = [], action) {
           error : action.error
         }
 
+        
         case DELETE_CONTACT :
-          return{
-            ...state,
-            action
-          }
+          return state.filter((user) => user !== action.contact);
     default:
       return state;
     }
