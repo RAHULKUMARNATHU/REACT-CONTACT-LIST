@@ -41,7 +41,7 @@ code {
 
 .menu-nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .menu-item {
@@ -201,3 +201,5 @@ code {
  .contact-container > label{
   display: block;
  }
+
+ 
